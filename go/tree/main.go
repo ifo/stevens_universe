@@ -19,15 +19,18 @@ func main() {
 	}
 	scan := bufio.NewScanner(read)
 
+	input := make(chan string)
+
+	for range make([]struct{}, 100) {
+		go tree.Root.Worker(input)
+	}
+
 	// only insert one in every 40
 	i := 0
 	mod := 40
 	for scan.Scan() {
 		if i%mod == 0 {
-			text := scan.Text()
-			go func() {
-				tree.Root.AddData([]rune(text), text)
-			}()
+			input <- scan.Text()
 			i = i / mod
 		}
 		i++
@@ -35,4 +38,10 @@ func main() {
 
 	log.Println("done")
 	log.Println(time.Since(n))
+}
+
+func (n *Node) Worker(ch <-chan string) {
+	for d := range ch {
+		n.AddData([]rune(d), d)
+	}
 }
