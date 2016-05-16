@@ -1,9 +1,6 @@
 package main
 
 import (
-	"bufio"
-	"log"
-	"os"
 	"sync"
 )
 
@@ -21,34 +18,6 @@ type Node struct {
 type Data struct {
 	Count  int
 	Trials []string
-}
-
-func main() {
-	tree := Tree{
-		Root: &Node{},
-	}
-
-	read, err := os.Open("data.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	scan := bufio.NewScanner(read)
-
-	// only insert one in every 40
-	i := 0
-	mod := 40
-	for scan.Scan() {
-		if i%mod == 0 {
-			tree.Root.AddData([]rune(scan.Text()), scan.Text())
-			i = i / mod
-		}
-		i++
-	}
-
-	log.Println("done")
-	// wait so memory usage can be checked
-	for {
-	}
 }
 
 func (n *Node) AddData(path []rune, data string) {
