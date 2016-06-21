@@ -1,0 +1,1 @@
+package main;import.`fmt`;func main(){s:="package main;import.`fmt`;func main(){s:=%q;Printf(s,s)}";Printf(s,s)}
