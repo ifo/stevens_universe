@@ -29,7 +29,7 @@ func main() {
 	db.First(&user, 1)                   // find user with id 1
 	db.First(&user, "name = ?", "Steve") // find user with name Steve
 
-	// Update - update 's price to 2000
+	// Update - update user's pass
 	db.Model(&user).Update("Pass", "Seriously hash and salt this")
 
 	// Delete - delete user
