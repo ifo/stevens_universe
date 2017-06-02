@@ -1,0 +1,8 @@
+# No configuration or setup by default, please.
+*.conf
+*.sh
+
+# Don't want to accidentally leak data, require explicit inclusion.
+*.json
+*.txt
+*.db
