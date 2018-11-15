@@ -1,0 +1,13 @@
+// This needs to be first so we can opt in to using protobuf version 3.
+syntax = "proto3";
+
+// This is next and will set the package name on our generated code.
+// By default it will use the name of the .proto file.
+// In this case the default would be "package message"
+package main;
+
+// This is our actual message.
+message Message {
+  string text = 1;
+  int64 number = 2;
+}
