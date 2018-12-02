@@ -91,4 +91,27 @@ func main() {
 	}
 
 	fmt.Printf("The similar id elements are: %s\n", string(similarities))
+	// Part 2 faster
+	fmt.Printf("The similar id elements are: %s\n", CloseIds(ids))
+}
+
+// CloseIds is part2 but O(n*l) instead of O(n^2)
+func CloseIds(ids map[string]struct{}) string {
+	prefixSuffix := map[string][]string{}
+	for id := range ids {
+		for i := range id {
+			prefix, suffix := id[:i], id[i+1:]
+			// We have to check existence, otherwise the default empty string will match
+			// the full prefix of the first ID we iterate through.
+			if suffixes, exists := prefixSuffix[prefix]; exists {
+				for _, suff := range suffixes {
+					if suff == suffix {
+						return prefix + suffix
+					}
+				}
+			}
+			prefixSuffix[prefix] = append(prefixSuffix[prefix], suffix)
+		}
+	}
+	return ""
 }
