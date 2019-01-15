@@ -1,9 +1,5 @@
-#[macro_use]
-extern crate serde_derive;
-
-extern crate serde;
-extern crate serde_json;
-
+use serde;
+use serde_derive::{Serialize, Deserialize};
 use serde_json::Value;
 
 #[derive(Serialize, Deserialize, Debug)]
