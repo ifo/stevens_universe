@@ -6,3 +6,6 @@
 *.json
 *.txt
 *.db
+
+# We don't need the rust "target" directory.
+target/
